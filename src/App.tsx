@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 
 function App() : ReactElement {
   return (
-    <Text>Hello World</Text>
+    <Text>Hello Dev</Text>
   );
 }
 
