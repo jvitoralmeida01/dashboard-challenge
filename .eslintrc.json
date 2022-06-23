@@ -37,6 +37,9 @@
             "imports": "never",
             "exports": "never",
             "functions": "never"
-        }]
+        }],
+        "linebreak-style": ["error", "windows"],
+        // "react/function-component-definition": ["off"],
+        "react/require-default-props": ["off"]
     }
 }
