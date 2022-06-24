@@ -11,7 +11,7 @@ function LoginPage() : ReactElement {
 
   return (
     <Flex height="100vh" width={['100vw', '80vw', '60vw', '50vw']} align="center" justify="center" background="neutral.100">
-      <Text>Hello Login</Text>
+      <Text>Hello duiwa</Text>
       <Button onClick={handleClick}>Login</Button>
     </Flex>
   );
