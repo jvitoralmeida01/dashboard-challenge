@@ -10,7 +10,7 @@ function LoginPage() : ReactElement {
   const handleClick = () : void => navigate('/dashboard');
 
   return (
-    <Flex height="100vh" width="90vw" maxWidth="894px" align="center" justify="center" background="#FFFFFF">
+    <Flex height="100vh" width={['100vw', '80vw', '60vw', '50vw']} align="center" justify="center" background="neutral.100">
       <Text>Hello Login</Text>
       <Button onClick={handleClick}>Login</Button>
     </Flex>
