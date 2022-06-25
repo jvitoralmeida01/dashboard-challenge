@@ -1,14 +1,16 @@
 import { useContext } from 'react';
 import AuthContext from '../Contexts/AuthProvider';
+import AuthInterface from '../Interfaces/Auth';
 
-const defaultAttributes = {
+const defaultAuth : AuthInterface = {
+  username: null,
   isLogged: false,
-  setIsLogged: () => {}
+  accessToken: null
 };
 
-function useAuthContext() : { isLogged : boolean, setIsLogged : (state : boolean) => void } {
+function useAuthContext() : AuthInterface {
   const context = useContext(AuthContext);
-  return { ...defaultAttributes, ...context };
+  return { ...defaultAuth, ...context };
 }
 
 export default useAuthContext;
