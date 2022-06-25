@@ -1,17 +1,12 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import useAuthContext from '../Hooks/useAuthContext';
 
-interface Props {
-  auth?: boolean;
-}
+function DashboardPage() : React.ReactElement {
+  const authContext = useAuthContext();
 
-function DashboardPage({ auth = false }: Props) : React.ReactElement {
-  if (auth) {
-    return <div>authorized</div>;
-  }
-  return (
-    <Navigate to="/login" />
-  );
+  if (!authContext.isLogged) return <Navigate to="/login" />;
+  return <div>{authContext.accessToken}</div>;
 }
 
 export default DashboardPage;
