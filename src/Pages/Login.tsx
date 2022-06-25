@@ -15,11 +15,9 @@ function LoginPage() : ReactElement {
   const toastSystem = useToastSystem();
 
   const handleClick = () : void => {
-    // API.post(LOGIN_URL, JSON.stringify({ email: 'admin', senha: 'admin' }))
-    //   .then(authContext.handleLoginResponse)
-    //   .catch(toastSystem.error);
-    Cookies.set('access-token', '226875f91cf43e2b0c314ef9c2a9521d5808960cc5a759c16d66e92803771178');
-    localStorage.setItem('username', 'edu');
+    API.post(LOGIN_URL, JSON.stringify({ email: 'admin', senha: 'admin' }))
+      .then(authContext.handleLoginResponse)
+      .catch(toastSystem.error);
   };
 
   if (authContext.isLogged) return <Navigate to="/dashboard" />;
