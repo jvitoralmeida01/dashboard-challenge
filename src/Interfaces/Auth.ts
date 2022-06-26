@@ -5,7 +5,7 @@ interface Auth {
   avatar: string | null | undefined;
   isLogged: boolean;
   accessToken: string | null | undefined;
-  handleLoginResponse?: (r : AxiosResponse) => Promise<any>
+  handleLoginResponse?: (r : AxiosResponse) => Promise<unknown>
 };
 
 export default Auth;
