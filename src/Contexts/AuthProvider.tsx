@@ -14,36 +14,51 @@ interface AuthContextProps {
 
 export function AuthProvider({ children = null } : AuthContextProps) : React.ReactElement {
   const [username, setUsername] = useState<string | null>(null);
+  const [avatar, setAvatar] = useState<string | null>(null);
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [accessToken, setAccessToken] = useState<string | null | undefined>(null);
 
+  /**
+   * Ensures auth persistence
+   */
   useEffect(() => {
     const cookie = Cookies.get('access-token');
-    const usr = localStorage.getItem('username');
+    const lsUsername = localStorage.getItem('username');
+    const lsAvatar = localStorage.getItem('avatar');
     setAccessToken(cookie);
-    setUsername(usr);
+    setUsername(lsUsername);
+    setAvatar(lsAvatar);
   }, []);
-
   useEffect(() => {
-    if (username && accessToken) setIsLogged(true);
+    if (accessToken) setIsLogged(true);
     else setIsLogged(false);
-  }, [username, accessToken]);
+  }, [accessToken]);
 
+  /**
+   * Updates the accessToken and chains another request to update the user info
+   * @param response - AxiosResponse after login request
+   * @returns the response of the chained request
+   */
   const handleLoginResponse = async (response : AxiosResponse) : Promise<AxiosResponse> => {
+    // Updating the cookies with the incoming access token
     const prevToken = Cookies.get('access-token');
     const incomingToken = response?.data?.['access-token'];
     if (incomingToken !== prevToken) {
       Cookies.set('access-token', incomingToken);
     }
     setAccessToken(incomingToken);
+    // Chaining user info request
     const userResponse = await API.get(USER_URL, {
       params: {
         'access-token': incomingToken
       }
     });
-    if (userResponse?.data) {
-      localStorage.setItem('username', userResponse?.data?.username);
+    // Updating the local storage with the user info
+    if (userResponse?.data != null) {
+      localStorage.setItem('username', userResponse.data.username);
+      localStorage.setItem('avatar', userResponse.data.avatar);
       setUsername(userResponse.data.username);
+      setAvatar(userResponse.data.avatar);
       setIsLogged(true);
     }
     return userResponse;
@@ -51,7 +66,7 @@ export function AuthProvider({ children = null } : AuthContextProps) : React.Rea
 
   const providerValue : AuthInterface = useMemo(
     () => ({
-      username, isLogged, accessToken, handleLoginResponse
+      username, avatar, isLogged, accessToken, handleLoginResponse
     }),
     [username, isLogged, accessToken]
   );

@@ -4,6 +4,7 @@ import AuthInterface from '../Interfaces/Auth';
 
 const defaultAuth : AuthInterface = {
   username: null,
+  avatar: null,
   isLogged: false,
   accessToken: null
 };
