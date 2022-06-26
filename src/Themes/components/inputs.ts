@@ -6,7 +6,8 @@ const InputStyles = {
         color: 'neutral.50',
         _hover: {
           bg: 'neutral.800',
-          borderColor: 'primary.light'
+          borderColor: 'primary.light',
+          transform: 'scale(1.05)'
         },
         _focus: {
           bg: 'primary.light',

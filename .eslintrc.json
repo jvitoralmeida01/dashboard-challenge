@@ -6,7 +6,9 @@
     "extends": [
         "plugin:react/recommended",
         "airbnb",
-        "plugin:import/typescript"
+        "plugin:import/typescript",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -40,6 +42,8 @@
         }],
         "linebreak-style": ["error", "windows"],
         // "react/function-component-definition": ["off"],
-        "react/require-default-props": ["off"]
+        "react/require-default-props": ["off"],
+        "@typescript-eslint/no-empty-function": ["off"],
+        "@typescript-eslint/no-extra-semi": ["off"]
     }
 }

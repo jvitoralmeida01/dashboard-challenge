@@ -4,6 +4,7 @@ import { Container } from '@chakra-ui/react';
 import LoginPage from './Pages/Login';
 import DashboardPage from './Pages/Dashboard';
 import BackgroundImage from './Components/BackgroundImage';
+import useAuthContext from './Hooks/useAuthContext';
 
 function App() : ReactElement {
   return (
