@@ -5,7 +5,9 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import Graphs from '../Components/Graphs';
+import FunnelSection from '../Components/DashboardSections/FunnelSection';
+import SalesSection from '../Components/DashboardSections/SalesSection';
+import StartSection from '../Components/DashboardSections/StartSection';
 import Navbar from '../Components/Navbar';
 import Sidebar from '../Components/Sidebar';
 import useAuthContext from '../Hooks/useAuthContext';
@@ -21,6 +23,15 @@ function DashboardPage() : React.ReactElement {
     }
   }, [sideItem?.current?.clientHeight]);
 
+  const textTitleStyle = {
+    fontWeight: 'bold',
+    fontSize: '24px',
+    color: 'primary.main',
+    mt: '24px',
+    mb: '24px',
+    ml: '28px'
+  };
+
   if (!authContext.isLogged) return <Navigate to="/login" />;
   return (
     <>
@@ -34,7 +45,11 @@ function DashboardPage() : React.ReactElement {
           <Sidebar height={height} />
         </GridItem>
         <GridItem colSpan={9}>
-          <Graphs />
+          <StartSection />
+          <Text sx={textTitleStyle}>Dashboard de Vendas</Text>
+          <SalesSection />
+          <Text sx={textTitleStyle}>Funil de Conversão</Text>
+          <FunnelSection />
         </GridItem>
       </Grid>
     </>

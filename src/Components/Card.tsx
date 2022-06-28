@@ -26,19 +26,23 @@ type Props = {
   height?: number,
   minWidth?: number | string,
   minHeight?: number | string,
+  maxWidth?: number | string,
+  maxHeight?: number | string,
   variant?: 'small' | 'medium' | 'large'
 }
 
 function Card({
-  children, rounded, width, height, minWidth, minHeight, variant
+  children, rounded, width, height, minWidth, minHeight, maxWidth, maxHeight, variant
 }: Props) : React.ReactElement {
   return (
     <Box
       bg="neutral.900"
       w={width}
       minWidth={minWidth}
+      maxWidth={maxWidth}
       h={height}
       minHeight={minHeight}
+      maxHeight={maxHeight}
       rounded={rounded ?? getRoundedByVariant(variant)}
       p={getPaddingByVariant(variant)}
     >

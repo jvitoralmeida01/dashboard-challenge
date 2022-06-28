@@ -21,7 +21,7 @@ function TagCard({
   title, tag, tagDescription, footer, footerPrefix, footerSuffix, color, endIcon
 }: Props) : React.ReactElement {
   return (
-    <Card variant="small" minHeight="168px" minWidth="232px">
+    <Card variant="small" maxHeight="168px" minWidth="232px">
       <VStack align="start">
         { title
           ? (
@@ -34,10 +34,10 @@ function TagCard({
           )}
         { tag ? <Tag variant="rounded" color={color ?? 'positive'}>{tag}</Tag> : <Box height="20px" />}
         { tagDescription ? <Text fontSize="14px" fontWeight="regular" color={color ?? 'positive'}>{tagDescription}</Text> : <Box height="18px" />}
-        <HStack>
-          <Text fontWeight="regular" fontSize="16px" color="neutral.200">{footerPrefix}</Text>
-          <Text fontWeight="bold" fontSize="20px" color="neutral.200">{footer}</Text>
-          <Text fontWeight="regular" fontSize="16px" color="neutral.200">{footerSuffix}</Text>
+        <HStack justify="start">
+          { footerPrefix ? <Text fontWeight="regular" fontSize="16px" color="neutral.200">{footerPrefix}</Text> : null }
+          { footer ? <Text fontWeight="bold" fontSize="20px" color="neutral.200">{footer}</Text> : null }
+          { footerSuffix ? <Text fontWeight="regular" fontSize="16px" color="neutral.200">{footerSuffix}</Text> : null }
         </HStack>
       </VStack>
     </Card>
