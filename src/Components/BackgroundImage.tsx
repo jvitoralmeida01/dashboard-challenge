@@ -4,7 +4,7 @@ import curvePatterns from '../Assets/curve-patterns.svg';
 
 function BackgroundImage() : React.ReactElement {
   return (
-    <Box background="background" style={{ position: 'absolute', zIndex: -1, overflow: 'hidden' }} height="100vh" width="100vw">
+    <Box background="background" style={{ position: 'fixed', zIndex: -1, overflow: 'hidden' }} height="100vh" width="100vw">
       <div style={{
         backgroundImage: `url(${curvePatterns})`,
         backgroundSize: 'cover',
