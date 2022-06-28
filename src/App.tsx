@@ -8,14 +8,14 @@ import useAuthContext from './Hooks/useAuthContext';
 
 function App() : ReactElement {
   return (
-    <Container height="100vh" centerContent>
+    <>
       <BackgroundImage />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
-    </Container>
+    </>
   );
 }
 
