@@ -23,7 +23,7 @@ function Sidebar({ height } : Props) : React.ReactElement {
   return (
     <Container height={`${height}px`} width="120px" sx={{ position: 'absolute' }}>
       <Box background="neutral.900" sx={sidebarStyle}>
-        <VStack spacing={4} padding="24px">
+        <VStack spacing="22px" padding="24px">
           <IconButton height="40px" aria-label="hamburguer-icon">
             <Text>Home</Text>
           </IconButton>

@@ -35,9 +35,6 @@ function DashboardPage() : React.ReactElement {
         </GridItem>
         <GridItem colSpan={9}>
           <Graphs />
-          <Graphs />
-          <Graphs />
-          <Graphs />
         </GridItem>
       </Grid>
     </>
