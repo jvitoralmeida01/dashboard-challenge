@@ -7,12 +7,12 @@ import useGraphDataContext from '../../Hooks/useGraphDataContext';
 import useToastSystem from '../../Hooks/useToastSystem';
 
 function SalesPerMonthGraph() : React.ReactElement {
-  const GraphDataContext = useGraphDataContext();
+  const graphDataContext = useGraphDataContext();
   const toastSystem = useToastSystem();
   const [salesData, setSalesData] = React.useState<Array<number>>([]);
 
   React.useEffect(() => {
-    GraphDataContext.getSalesData().then(
+    graphDataContext.getSalesData().then(
       (data : Array<any>) => {
         const values : Array<number> = data.map((item : any) : number => item.value);
         setSalesData(values);

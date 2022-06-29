@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import Cookies from 'js-cookie';
 import { AxiosResponse } from 'axios';
-import API, { SALES_URL } from '../api';
+import API, { SALES_URL, PROFITMONTH_URL } from '../api';
 import useAuthContext from '../Hooks/useAuthContext';
 import useToastSystem from '../Hooks/useToastSystem';
 
@@ -17,6 +17,18 @@ export function GraphDataProvider({ children = null } : GraphDataProps) : React.
   const authContext = useAuthContext();
   const toastSystem = useToastSystem();
   const [salesData, setSalesData] = useState<Array<any> | null>(null);
+  const [profitPerMonth, setProfitPerMonth] = useState< Array<Record<number, number>> | null>(null);
+
+  const getProfitPerMonth = async () : Promise<Array<Record<number, number>> | Error> => {
+    if (authContext.isLogged && authContext.accessToken) {
+      return API.get(PROFITMONTH_URL)
+        .then((response: AxiosResponse) : Array<Record<number, number>> => {
+          setProfitPerMonth(response?.data);
+          return response?.data;
+        });
+    }
+    return Promise.reject(new Error('Not logged in'));
+  };
 
   const getSalesData = async () : Promise<unknown> => {
     if (authContext.isLogged && authContext.accessToken) {
@@ -31,9 +43,9 @@ export function GraphDataProvider({ children = null } : GraphDataProps) : React.
 
   const providerValue = React.useMemo(
     () => ({
-      salesData, getSalesData
+      salesData, getSalesData, getProfitPerMonth
     }),
-    [salesData, getSalesData]
+    [salesData, getSalesData, getProfitPerMonth]
   );
 
   return (
