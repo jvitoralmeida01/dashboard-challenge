@@ -44,7 +44,7 @@ export function AuthProvider({ children = null } : AuthContextProps) : React.Rea
     const prevToken = Cookies.get('access-token');
     const incomingToken = response?.data?.['access-token'];
     if (incomingToken !== prevToken) {
-      Cookies.set('access-token', incomingToken);
+      Cookies.set('access-token', incomingToken, { expires: 10 });
     }
     setAccessToken(incomingToken);
     // Chaining user info request
