@@ -1,12 +1,25 @@
 import {
-  Box, Flex, Grid, GridItem, HStack, Select, Text, VStack
+  Box, Center, Flex, Grid, GridItem, HStack, Select, Skeleton, Spinner, Text, VStack
 } from '@chakra-ui/react';
 import React from 'react';
 import Chart from 'react-apexcharts';
-import Card from '../Card';
-import FormInput from '../FormInput';
+import useGraphDataContext from '../../Hooks/useGraphDataContext';
+import useToastSystem from '../../Hooks/useToastSystem';
 
 function SalesPerMonthGraph() : React.ReactElement {
+  const GraphDataContext = useGraphDataContext();
+  const toastSystem = useToastSystem();
+  const [salesData, setSalesData] = React.useState<Array<number>>([]);
+
+  React.useEffect(() => {
+    GraphDataContext.getSalesData().then(
+      (data : Array<any>) => {
+        const values : Array<number> = data.map((item : any) : number => item.value);
+        setSalesData(values);
+      }
+    ).catch((e:Error) => toastSystem.error(e));
+  }, []);
+
   const options = {
     chart: {
       id: 'apexchart-line'
@@ -34,12 +47,18 @@ function SalesPerMonthGraph() : React.ReactElement {
     }
   };
 
-  const series1 = {
+  const data = {
     name: 'series-1',
-    data: [25, 56, 76, 58, 39, 22, 24, 55, 70, 67, 49, 20]
+    data: salesData
   };
 
-  return <Chart options={options} series={[series1]} type="bar" width="600px" height="350px" />;
+  return (
+    <>
+      { salesData.length === 0 ? <Center><Spinner size="lg" /></Center> : null }
+      <Chart options={options} series={salesData.length !== 0 ? [{ name: 'Sales data', data: salesData }] : []} type="bar" width="600px" height="350px" />
+      ;
+    </>
+  );
 }
 
 export default SalesPerMonthGraph;

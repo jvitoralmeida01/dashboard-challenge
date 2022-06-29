@@ -10,6 +10,7 @@ import SalesSection from '../Components/DashboardSections/SalesSection';
 import StartSection from '../Components/DashboardSections/StartSection';
 import Navbar from '../Components/Navbar';
 import Sidebar from '../Components/Sidebar';
+import { GraphDataProvider } from '../Contexts/GraphDataProvider';
 import useAuthContext from '../Hooks/useAuthContext';
 
 function DashboardPage() : React.ReactElement {
@@ -34,7 +35,7 @@ function DashboardPage() : React.ReactElement {
 
   if (!authContext.isLogged) return <Navigate to="/login" />;
   return (
-    <>
+    <GraphDataProvider>
       <Navbar />
       <Spacer />
       <Grid
@@ -52,7 +53,7 @@ function DashboardPage() : React.ReactElement {
           <FunnelSection />
         </GridItem>
       </Grid>
-    </>
+    </GraphDataProvider>
   );
 }
 

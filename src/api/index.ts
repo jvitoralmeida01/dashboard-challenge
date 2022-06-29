@@ -6,3 +6,4 @@ export default axios.create({
 
 export const LOGIN_URL = '/login';
 export const USER_URL = '/me';
+export const SALES_URL = '/sells-per-month';
