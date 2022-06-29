@@ -1,5 +1,4 @@
 /* eslint-disable react/no-array-index-key */
-import { HamburgerIcon } from '@chakra-ui/icons';
 import { RiHomeLine } from 'react-icons/ri';
 import { HiMenuAlt2, HiOutlineCreditCard } from 'react-icons/hi';
 import { ImStack } from 'react-icons/im';
