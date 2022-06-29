@@ -4,6 +4,7 @@ import InputStyles from './components/inputs';
 import AvatarStyles from './components/avatars';
 import TagStyles from './components/tags';
 import SelectStyles from './components/selects';
+import IconStyles from './components/icons';
 
 const lightTheme = extendTheme({
   colors: {
@@ -29,6 +30,7 @@ const lightTheme = extendTheme({
     Input: InputStyles,
     Select: SelectStyles,
     Avatar: AvatarStyles,
+    Icon: IconStyles,
     Tag: TagStyles
   }
 });

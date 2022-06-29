@@ -1,4 +1,13 @@
+/* eslint-disable react/no-array-index-key */
 import { HamburgerIcon } from '@chakra-ui/icons';
+import { RiHomeLine } from 'react-icons/ri';
+import { HiMenuAlt2, HiOutlineCreditCard } from 'react-icons/hi';
+import { ImStack } from 'react-icons/im';
+import { BsTruck } from 'react-icons/bs';
+import {
+  FiShoppingCart, FiMessageSquare, FiHexagon, FiTool
+} from 'react-icons/fi';
+import { AiTwotoneTool } from 'react-icons/ai';
 import {
   Box,
   Center,
@@ -20,38 +29,36 @@ function Sidebar({ height } : Props) : React.ReactElement {
     height: '90vh'
   };
 
+  const icons = [
+    HiMenuAlt2,
+    RiHomeLine,
+    ImStack,
+    FiTool,
+    BsTruck,
+    FiShoppingCart,
+    HiOutlineCreditCard,
+    FiMessageSquare,
+    FiHexagon
+  ];
+
   return (
     <Container height={`${height}px`} width="120px" sx={{ position: 'absolute' }}>
       <Box background="neutral.900" sx={sidebarStyle}>
         <VStack spacing="22px" padding="24px">
-          <IconButton height="40px" aria-label="hamburguer-icon">
-            <Text>Home</Text>
-          </IconButton>
-          <Divider />
-          <IconButton aria-label="hamburguer-icon">
-            <HamburgerIcon />
-          </IconButton>
-          <IconButton aria-label="hamburguer-icon">
-            <HamburgerIcon />
-          </IconButton>
-          <IconButton aria-label="hamburguer-icon">
-            <HamburgerIcon />
-          </IconButton>
-          <IconButton aria-label="hamburguer-icon">
-            <HamburgerIcon />
-          </IconButton>
-          <IconButton aria-label="hamburguer-icon">
-            <HamburgerIcon />
-          </IconButton>
-          <IconButton aria-label="hamburguer-icon">
-            <HamburgerIcon />
-          </IconButton>
-          <IconButton aria-label="hamburguer-icon">
-            <HamburgerIcon />
-          </IconButton>
-          <IconButton aria-label="hamburguer-icon">
-            <HamburgerIcon />
-          </IconButton>
+          {
+            icons.map((icon, index) => {
+              let divider = null;
+              if (index === 1) divider = <Divider key={`sidebar-divider-${index}`} />;
+              return (
+                <>
+                  {divider}
+                  <IconButton key={`sidebar-icon-${index}`} variant="icon" aria-label="sidebar-icon">
+                    <Icon as={icon} height="22px" width="22px" />
+                  </IconButton>
+                </>
+              );
+            })
+          }
         </VStack>
       </Box>
     </Container>

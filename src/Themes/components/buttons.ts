@@ -12,6 +12,17 @@ const ButtonStyles = {
         bg: 'primary.light',
         color: 'neutral.900'
       }
+    },
+    icon: {
+      bg: 'transparent',
+      color: '#959ea3',
+      borderRadius: '8px',
+      width: '40px',
+      height: '40px',
+      _hover: {
+        bg: 'primary.main',
+        color: 'neutral.900'
+      }
     }
   }
 };
