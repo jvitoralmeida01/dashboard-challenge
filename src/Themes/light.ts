@@ -2,6 +2,8 @@ import { extendTheme } from '@chakra-ui/react';
 import ButtonStyles from './components/buttons';
 import InputStyles from './components/inputs';
 import AvatarStyles from './components/avatars';
+import TagStyles from './components/tags';
+import SelectStyles from './components/selects';
 
 const lightTheme = extendTheme({
   colors: {
@@ -18,12 +20,16 @@ const lightTheme = extendTheme({
       700: '#F3F5F6',
       800: '#F6F6F9',
       900: '#FFFFFF'
-    }
+    },
+    positive: '#109E8E',
+    negative: '#D6628E'
   },
   components: {
     Button: ButtonStyles,
     Input: InputStyles,
-    Avatar: AvatarStyles
+    Select: SelectStyles,
+    Avatar: AvatarStyles,
+    Tag: TagStyles
   }
 });
 

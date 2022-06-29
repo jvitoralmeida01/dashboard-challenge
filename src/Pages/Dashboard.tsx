@@ -5,7 +5,9 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import Graphs from '../Components/Graphs';
+import FunnelSection from '../Components/DashboardSections/FunnelSection';
+import SalesSection from '../Components/DashboardSections/SalesSection';
+import StartSection from '../Components/DashboardSections/StartSection';
 import Navbar from '../Components/Navbar';
 import Sidebar from '../Components/Sidebar';
 import useAuthContext from '../Hooks/useAuthContext';
@@ -21,39 +23,37 @@ function DashboardPage() : React.ReactElement {
     }
   }, [sideItem?.current?.clientHeight]);
 
+  const textTitleStyle = {
+    fontWeight: 'bold',
+    fontSize: '24px',
+    color: 'primary.main',
+    mt: '24px',
+    mb: '24px',
+    ml: '28px'
+  };
+
   if (!authContext.isLogged) return <Navigate to="/login" />;
   return (
     <>
       <Navbar />
       <Spacer />
       <Grid
-        w="100vw"
+        w="100%"
         templateColumns="repeat(10, 1fr)"
-        gap={4}
       >
-        <GridItem ref={sideItem} colSpan={1} bg="tomato">
+        <GridItem ref={sideItem} colSpan={1}>
           <Sidebar height={height} />
         </GridItem>
-        <GridItem colSpan={9} bg="papayawhip" />
+        <GridItem colSpan={9} mb={6}>
+          <StartSection />
+          <Text sx={textTitleStyle}>Dashboard de Vendas</Text>
+          <SalesSection />
+          <Text sx={textTitleStyle}>Funil de Conversão</Text>
+          <FunnelSection />
+        </GridItem>
       </Grid>
     </>
   );
 }
 
 export default DashboardPage;
-
-// eslint-disable-next-line no-lone-blocks
-{ /* <Grid
-        boxSize="100%"
-        templateRows="repeat(20, 1fr)"
-        templateColumns="repeat(20, 1fr)"
-        gap={4}
-      >
-        <GridItem rowSpan={3} colSpan={22} bg="green.200">
-          <Navbar />
-        </GridItem>
-        <GridItem rowSpan={20} colSpan={2} bg="tomato" />
-        <GridItem rowSpan={20} colSpan={20} bg="papayawhip">
-          <Graphs />
-        </GridItem>
-      </Grid> */ }
