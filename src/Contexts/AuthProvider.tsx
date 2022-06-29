@@ -44,7 +44,7 @@ export function AuthProvider({ children = null } : AuthContextProps) : React.Rea
     const prevToken = Cookies.get('access-token');
     const incomingToken = response?.data?.['access-token'];
     if (incomingToken !== prevToken) {
-      Cookies.set('access-token', incomingToken);
+      Cookies.set('access-token', incomingToken, { expires: 10 });
     }
     setAccessToken(incomingToken);
     // Chaining user info request
@@ -55,9 +55,9 @@ export function AuthProvider({ children = null } : AuthContextProps) : React.Rea
     });
     // Updating the local storage with the user info
     if (userResponse?.data != null) {
-      localStorage.setItem('username', userResponse.data.username);
+      localStorage.setItem('username', userResponse.data.name);
       localStorage.setItem('avatar', userResponse.data.avatar);
-      setUsername(userResponse.data.username);
+      setUsername(userResponse.data.name);
       setAvatar(userResponse.data.avatar);
       setIsLogged(true);
     }
