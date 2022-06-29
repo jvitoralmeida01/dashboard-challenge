@@ -4,7 +4,7 @@ import TagCard from '../DashboardCards/TagCard';
 
 function FunnelSection() : React.ReactElement {
   return (
-    <HStack id="scrollable" spacing="32px" sx={{ overflowX: 'scroll' }}>
+    <HStack id="scrollable" spacing="32px" sx={{ overflowX: 'scroll', overflowY: 'hidden' }}>
       <TagCard title="Sessões" tag="+ 15 %" tagDescription="em relação a ontem" footerPrefix="R$" footer="9.292,00" color="positive" />
       <TagCard title="Visualizações de Produto" tag="+ 15 %" tagDescription="em relação a julho" footerPrefix="R$" footer="129.292,00" color="positive" />
       <TagCard title="Conversão para a página de produtos" tag="há 5 dias" tagDescription="em relação a julho" footer="8" footerSuffix="produtos" color="positive" />

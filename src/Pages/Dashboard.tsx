@@ -44,7 +44,7 @@ function DashboardPage() : React.ReactElement {
         <GridItem ref={sideItem} colSpan={1}>
           <Sidebar height={height} />
         </GridItem>
-        <GridItem colSpan={9}>
+        <GridItem colSpan={9} mb={6}>
           <StartSection />
           <Text sx={textTitleStyle}>Dashboard de Vendas</Text>
           <SalesSection />
